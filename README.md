@@ -20,6 +20,12 @@ Anyway, my solution to this was to use `subprocess` and the `raspi-gpio` script 
 
 ### Push-button solenoid trigger and the one second trigger time
 
+The two circled regions of the schematic show the RC timing circuit that keeps the pulse active. I chose to go for a time constant of 1s to enable the triggered pulse from either the Raspberry Pi or the manual switch two drive the output of the solenoid high. I decided to do this mainly for safety, but the one second was arbitrary. I observed that if the solenoid was kept in an active state for a prolonged period of time, it would begin to heat up (as well as Q11 in the schematic). To limit the dissipated power between 12V and ground, I decided to implement logic to allow for the solenoid to only trigger for 1 second at a time.
+
+The drawback of this is that you must wait for C1 and C2 to charge back up before triggering the solenoid again. Theoretically, this should be at most one second as well, but I've observed that it is better to give it ~3 seconds to fully charge. 
+
+![images/schematic_pic.jpg](images/schematic_pic.png)
+
 ## Future Work
 
 ### Printing a PCB
