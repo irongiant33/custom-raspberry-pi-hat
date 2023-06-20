@@ -1,0 +1,31 @@
+# Proposal Box
+
+## Purpose
+
+Create a hardware interface for the Raspberry Pi to enable toggling of 5 LEDs of different colors, some DC fans, and a 12V solenoid. 
+
+## Demo
+
+TBD - include side-by-side video of example-program (`gpio_driver.py`) running on a computer and a video of the LEDs & solenoid turning on
+
+## Design Decisions
+
+### Using subprocess to drive Raspberry Pi GPIO outputs LOW
+
+I noticed some strange behavior when running an older version of `gpio_driver.py` when I did not have the `subprocess` module imported. When I would `CTRL+C` exit from the program, all of the GPIO outputs would drive high - resulting in charging the capacitor for the solenoid & driving all of the LED outputs high. To me, this was undesired behavior because I didn't want the bright LEDs to be on unless the "proposal program" was actively running. 
+
+The best reasoning for why this happened was found on the Raspberry Pi Stack Exchange (https://raspberrypi.stackexchange.com/questions/121081/leds-do-not-turn-off-after-the-raspberry-pi-powers-down#:~:text=If%20you%20want%20to%20make%20sure%20all%20pins,%28set%20all%20pins%20to%20output%20and%20drive%20low%29.) where they reasoned that the operating system does this by default - this seems strange to me because the Pi could potentially have a short circuit and burn out the pins if it leaves them high.
+
+Anyway, my solution to this was to use `subprocess` and the `raspi-gpio` script as suggested in the thread to force the outputs low. However, this results in a GPIO warning the next time `gpio_driver.py` is launched. To get around this, I just ignored the GPIO warnings.
+
+### Push-button solenoid trigger and the one second trigger time
+
+## Future Work
+
+### Printing a PCB
+
+This would be a fun opportunity to learn more about KiCad. They have a good basic tutorial here (https://docs.kicad.org/7.0/en/getting_started_in_kicad/getting_started_in_kicad.html) which was helpful to start playing with the PCB. Soldering the prototype board was a huge PITA and I was worried that I was going to mess something up. 
+
+One area I'd have to fix with the current KiCad files that are in this folder is the footprint for some of the components are off. I was just curious what the board layout would look like, but I would have to get the footprint for the resistors, capacitors, and pin headers to match up with what I have. It would be even better if I could match the Raspberry Pi footprint to effectively create a Raspberry Pi hat. 
+
+### Implement the Cmd library for gpio_driver.py
