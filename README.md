@@ -6,7 +6,11 @@ Create a hardware interface for the Raspberry Pi to enable toggling of 5 LEDs of
 
 ## Demo
 
-TBD - include side-by-side video of example-program (`gpio_driver.py`) running on a computer and a video of the LEDs & solenoid turning on
+![demo gif](images/demo_video.gif)
+
+## Board Layout
+
+![circuit layout](images/proposalboxcircuit.jpg)
 
 ## Design Decisions
 
