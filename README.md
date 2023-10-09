@@ -30,12 +30,28 @@ The drawback of this is that you must wait for C1 and C2 to charge back up befor
 
 ![images/schematic_pic.jpg](images/schematic_pic.png)
 
+## PCB Printing
+
+Check out the "pcbway-09oct23" tag to see the updates I made to the schematic and the PCB in order to make it printable. I ended up going with PCBWay to print everything, I exported the KiCad PCB file to Gerber, zipped it up, and uploaded it to PCBWay for the print. Fingers crossed everything comes out okay! 
+
+Here is how I phrased my previous "future work""
+
+> This would be a fun opportunity to learn more about KiCad. They have a good basic tutorial here (https://docs.kicad.org/7.0/en/getting_started_in_kicad/getting_started_in_kicad.html) which was helpful to start playing with the PCB. Soldering the prototype board was a huge PITA and I was worried that I was going to mess something up. 
+>
+> One area I'd have to fix with the current KiCad files that are in this folder is the footprint for some of the components are off. I was just curious what the board layout would look like, but I would have to get the footprint for the resistors, capacitors, and pin headers to match up with what I have. It would be even better if I could match the Raspberry Pi footprint to effectively create a Raspberry Pi hat. 
+
+I completely forgot about that old "getting started" guide, but thankfully remembered most everything I needed to in order to get things to work. With the help of my digital calipers, I updated the footprints of all of the devices in my schematic to match that which I had on hand. I also heavily leaned on Raspberry Pi's schematics and mechanical drawings (https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#schematics-and-mechanical-drawings) for help in making it compatible for a Pi hat. I wanted to have room for the Boost converter that I had for amazon for everything to be really compact, and this made it a challenge to fit everything together - but it fit! That constraint definitely made the via routing more interesting, but I got it to work.
+
+I ended up editing the width of the via for the power line (anything associated with 12V) to mimic the width of 22AWG cable - however, as I've noted on the new future work, it would have been better to make an electrical simulation to know exactly what I needed here. 
+
 ## Future Work
 
-### Printing a PCB
+### KiCad improvements
 
-This would be a fun opportunity to learn more about KiCad. They have a good basic tutorial here (https://docs.kicad.org/7.0/en/getting_started_in_kicad/getting_started_in_kicad.html) which was helpful to start playing with the PCB. Soldering the prototype board was a huge PITA and I was worried that I was going to mess something up. 
-
-One area I'd have to fix with the current KiCad files that are in this folder is the footprint for some of the components are off. I was just curious what the board layout would look like, but I would have to get the footprint for the resistors, capacitors, and pin headers to match up with what I have. It would be even better if I could match the Raspberry Pi footprint to effectively create a Raspberry Pi hat. 
+- Ground plane printing
+- Matching the 3D rendering model to what I have in real life
+    - Making my own footprints and renderings
+- leveraging community templates
+- Better electrical simulation to better approximate track widths
 
 ### Implement the Cmd library for gpio_driver.py
