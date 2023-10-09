@@ -6,7 +6,11 @@ Create a hardware interface for the Raspberry Pi to enable toggling of 5 LEDs of
 
 ## Demo
 
+<<<<<<< HEAD
 ![demo video](https://www.youtube.com/watch?v=JTKpwDRQpkI)
+=======
+https://www.youtube.com/watch?v=JTKpwDRQpkI
+>>>>>>> 8d9036fe2d9ec1f0e99d36c5b7d8f03785d2b9ff
 
 ## Board Layout
 
