@@ -1,4 +1,4 @@
-# Proposal Box
+# Raspberry Pi Hat
 
 ## Purpose
 
